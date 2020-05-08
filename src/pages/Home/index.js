@@ -1,8 +1,9 @@
 import React from 'react';
 import {StyleSheet, StatusBar} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 import Lottie from 'lottie-react-native';
 
-import mother from '../../assets/lottie/mother.json';
+import medic from '../../assets/lottie/medic.json';
 
 import {
   Container,
@@ -16,6 +17,12 @@ import {
 } from './styles';
 
 export default () => {
+  const navigation = useNavigation();
+
+  const navigateForNewRegister = () => {
+    navigation.navigate('NewRegister');
+  };
+
   return (
     <Container>
       <StatusBar barStyle="light-content" backgroundColor="#76b1c4" />
@@ -25,7 +32,7 @@ export default () => {
           style={styles.lottie}
           resizeMode="contain"
           autoSize
-          source={mother}
+          source={medic}
           autoPlay
           loop
           speed={1}
@@ -34,7 +41,7 @@ export default () => {
       </AreaLottie>
 
       <AreaButtons>
-        <ButtonNewRegister>
+        <ButtonNewRegister onPress={navigateForNewRegister}>
           <ButtonNewRegisterText>Novo Registro</ButtonNewRegisterText>
         </ButtonNewRegister>
 

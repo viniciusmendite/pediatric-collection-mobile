@@ -1,7 +1,9 @@
 import styled from 'styled-components/native';
 import {StyleSheet} from 'react-native';
 
-export const Container = styled.SafeAreaView`
+export const Container = styled.ScrollView.attrs({
+  showsVerticalScrollIndicator: false,
+})`
   flex: 1;
   background: #76b1c4;
 `;
@@ -17,7 +19,7 @@ export const Title = styled.Text`
   color: #fff;
 `;
 
-export const AreaRegister = styled.ScrollView`
+export const AreaRegister = styled.View`
   padding: 20px;
 `;
 
@@ -29,7 +31,7 @@ export const InfoTitle = styled.Text`
   margin-bottom: 10px;
 `;
 
-export const NameInput = styled.TextInput`
+export const DefaultInput = styled.TextInput`
   height: 40px;
   border-width: 1px;
   border-color: #ddd;
@@ -40,7 +42,7 @@ export const NameInput = styled.TextInput`
   margin-bottom: 10px;
 `;
 
-export const AreaInput = styled.View`
+export const AreaRow = styled.View`
   flex-direction: row;
   justify-content: space-between;
 `;
@@ -59,4 +61,44 @@ export const DataInput = styled.TextInput`
 
 export const AreaContact = styled.View`
   margin-top: 10px;
+`;
+
+export const AreaClinic = styled.View`
+  margin-top: 10px;
+`;
+
+export const AreaButton = styled.View`
+  margin-top: 20px;
+  align-items: center;
+`;
+
+export const ButtonSend = styled.TouchableOpacity`
+  justify-content: center;
+  align-items: center;
+  border-width: 1px;
+  width: 100%;
+  padding: 10px;
+  border-radius: 4px;
+  border-color: #ddd;
+`;
+export const ButtonSendText = styled.Text`
+  font-size: 15px;
+  font-weight: bold;
+  color: #ddd;
+`;
+
+export const Footer = styled.View`
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-end;
+  margin-bottom: 10px;
+  margin-right: 20px;
+`;
+
+export const TitleFooter = styled.Text`
+  font-size: 11px;
+  color: #fff;
+  border-bottom-width: ${StyleSheet.hairlineWidth}px;
+  border-bottom-color: rgba(255, 255, 255, 0.4);
+  margin-right: 5px;
 `;

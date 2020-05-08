@@ -11,8 +11,9 @@ export default () => {
   return (
     <NavigationContainer>
       <AppStack.Navigator
-        screenOptions={{headerShown: false}}
-        initialRouteName="NewRegister">
+        screenOptions={{
+          headerShown: false,
+        }}>
         <AppStack.Screen name="Home" component={Home} />
         <AppStack.Screen name="NewRegister" component={NewRegister} />
       </AppStack.Navigator>
