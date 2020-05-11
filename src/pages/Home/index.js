@@ -26,7 +26,6 @@ export default () => {
   return (
     <Container>
       <StatusBar barStyle="light-content" backgroundColor="#76b1c4" />
-
       <AreaLottie>
         <Lottie
           style={styles.lottie}
