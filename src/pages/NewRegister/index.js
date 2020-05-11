@@ -152,9 +152,6 @@ export default () => {
           resizeMode="contain"
           autoSize
           source={medic}
-          autoPlay
-          loop
-          speed={1}
         />
       </Footer>
     </Container>
