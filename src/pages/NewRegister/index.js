@@ -1,7 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {StatusBar, StyleSheet} from 'react-native';
 import Lottie from 'lottie-react-native';
 import TextInputMask from 'react-native-text-input-mask';
+
+import api from '../../services/api';
 
 import register from '../../assets/lottie/register.json';
 import medic from '../../assets/lottie/medic.json';
@@ -26,6 +28,50 @@ import {
 } from './styles';
 
 export default () => {
+  const [loading, setLoading] = useState(false);
+
+  const [patient, setPatient] = useState('');
+  const [responsible, setResponsible] = useState('');
+  const [pulse, setPulse] = useState();
+  const [saturation, setSaturation] = useState();
+  const [respiration, setRespiration] = useState();
+  const [pressure, setPressure] = useState('');
+  const [address, setAddress] = useState('');
+  const [neighborhood, setNeighborhood] = useState('');
+  const [city, setCity] = useState('');
+  const [telephone, setTelephone] = useState('');
+  const [medicName, setMedicName] = useState('');
+  const [date, setDate] = useState('');
+  const [hour, setHour] = useState('');
+
+  const handleSendNewRegister = async () => {
+    const data = {
+      patient,
+      responsible,
+      pulse,
+      saturation,
+      respiration,
+      pressure,
+      address,
+      neighborhood,
+      city,
+      telephone,
+      medic: medicName,
+      date,
+      hour,
+    };
+
+    try {
+      setLoading(false);
+      await api.post('consultation', data);
+      // eslint-disable-next-line no-alert
+      setLoading(true);
+      alert('dados enviados com sucesso');
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <Container>
       <StatusBar barStyle="light-content" backgroundColor="#76b1c4" />
@@ -50,11 +96,15 @@ export default () => {
             placeholder="Nome"
             placeholderTextColor="#ddd"
             autoCapitalize="words"
+            value={patient}
+            onChangeText={t => setPatient(t)}
           />
           <DefaultInput
             placeholder="Responsável"
             placeholderTextColor="#ddd"
             autoCapitalize="words"
+            value={responsible}
+            onChangeText={t => setResponsible(t)}
           />
 
           <AreaRow>
@@ -62,11 +112,15 @@ export default () => {
               placeholder="Pulso"
               placeholderTextColor="#ddd"
               keyboardType="numeric"
+              value={pulse}
+              onChangeText={t => setPulse(t)}
             />
             <DataInput
               placeholder="Saturação"
               placeholderTextColor="#ddd"
               keyboardType="numeric"
+              value={saturation}
+              onChangeText={t => setSaturation(t)}
             />
           </AreaRow>
 
@@ -75,8 +129,15 @@ export default () => {
               placeholder="Respiração"
               placeholderTextColor="#ddd"
               keyboardType="numeric"
+              value={respiration}
+              onChangeText={t => setRespiration(t)}
             />
-            <DataInput placeholder="Pressão" placeholderTextColor="#ddd" />
+            <DataInput
+              placeholder="Pressão"
+              placeholderTextColor="#ddd"
+              value={pressure}
+              onChangeText={t => setPressure(t)}
+            />
           </AreaRow>
         </AreaPatient>
 
@@ -86,6 +147,8 @@ export default () => {
             placeholder="Endereço + num"
             placeholderTextColor="#ddd"
             autoCapitalize="words"
+            value={address}
+            onChangeText={t => setAddress(t)}
           />
 
           <AreaRow>
@@ -93,11 +156,15 @@ export default () => {
               placeholder="Bairro"
               placeholderTextColor="#ddd"
               autoCapitalize="words"
+              value={neighborhood}
+              onChangeText={t => setNeighborhood(t)}
             />
             <DataInput
               placeholder="Cidade"
               placeholderTextColor="#ddd"
               autoCapitalize="words"
+              value={city}
+              onChangeText={t => setCity(t)}
             />
           </AreaRow>
 
@@ -108,6 +175,10 @@ export default () => {
             keyboardType="numeric"
             autoCorrect={false}
             mask={'([00]) [00000]  [0000]'}
+            value={telephone}
+            onChangeText={(formatted, extracted) => {
+              setTelephone(formatted);
+            }}
           />
         </AreaContact>
 
@@ -117,6 +188,8 @@ export default () => {
             placeholder="Médico"
             placeholderTextColor="#ddd"
             autoCapitalize="words"
+            value={medicName}
+            onChangeText={t => setMedicName(t)}
           />
 
           <AreaRow>
@@ -127,6 +200,10 @@ export default () => {
               keyboardType="numeric"
               autoCorrect={false}
               mask={'[00]/[00]/[0000]'}
+              value={date}
+              onChangeText={(formatted, extracted) => {
+                setDate(formatted);
+              }}
             />
             <TextInputMask
               style={styles.dataInput}
@@ -135,12 +212,16 @@ export default () => {
               keyboardType="numeric"
               autoCorrect={false}
               mask={'[00]:[00]'}
+              value={hour}
+              onChangeText={(formatted, extracted) => {
+                setHour(formatted);
+              }}
             />
           </AreaRow>
         </AreaClinic>
 
         <AreaButton>
-          <ButtonSend>
+          <ButtonSend onPress={handleSendNewRegister}>
             <ButtonSendText>Cadastrar</ButtonSendText>
           </ButtonSend>
         </AreaButton>
