@@ -7,6 +7,7 @@ import api from '../../services/api';
 
 import register from '../../assets/lottie/register.json';
 import medic from '../../assets/lottie/medic.json';
+import dnaLoading from '../../assets/lottie/loading-paperplane.json';
 
 import {
   Container,
@@ -25,6 +26,8 @@ import {
   ButtonSendText,
   Footer,
   TitleFooter,
+  LoadingArea,
+  LoadingText,
 } from './styles';
 
 export default () => {
@@ -62,18 +65,19 @@ export default () => {
     };
 
     try {
-      setLoading(false);
+      setLoading(true);
       await api.post('consultation', data);
       // eslint-disable-next-line no-alert
-      setLoading(true);
-      alert('dados enviados com sucesso');
+      setTimeout(() => {
+        setLoading(false);
+      }, 2000);
     } catch (error) {
       console.log(error);
     }
   };
 
   return (
-    <Container>
+    <Container scrollEnabled={loading ? false : true}>
       <StatusBar barStyle="light-content" backgroundColor="#76b1c4" />
 
       <AreaLottie>
@@ -82,8 +86,8 @@ export default () => {
           resizeMode="contain"
           autoSize
           source={register}
-          autoPlay
-          loop
+          autoPlay={loading ? false : true}
+          loop={loading ? false : true}
           speed={1}
         />
         <Title>Cadastre seu paciente</Title>
@@ -235,6 +239,22 @@ export default () => {
           source={medic}
         />
       </Footer>
+
+      {loading === true && (
+        <LoadingArea>
+          <Lottie
+            style={styles.lottieLoading}
+            resizeMode="contain"
+            autoSize
+            source={dnaLoading}
+            autoPlay
+            loop
+            speed={1}
+          />
+
+          <LoadingText>ENVIANDO DADOS...</LoadingText>
+        </LoadingArea>
+      )}
     </Container>
   );
 };
@@ -248,6 +268,10 @@ const styles = StyleSheet.create({
   lottieFooter: {
     width: 40,
     height: 40,
+  },
+  lottieLoading: {
+    width: 200,
+    height: 200,
   },
   input: {
     height: 40,

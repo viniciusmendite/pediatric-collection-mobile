@@ -102,3 +102,18 @@ export const TitleFooter = styled.Text`
   border-bottom-color: rgba(255, 255, 255, 0.4);
   margin-right: 5px;
 `;
+
+export const LoadingArea = styled.View`
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  align-items: center;
+  justify-content: center;
+`;
+
+export const LoadingText = styled.Text`
+  font-size: 18px;
+  color: #8280e1;
+  font-weight: bold;
+`;
