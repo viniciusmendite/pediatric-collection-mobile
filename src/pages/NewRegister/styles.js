@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Animated} from 'react-native';
 
 export const Container = styled.ScrollView.attrs({
   showsVerticalScrollIndicator: false,
@@ -116,4 +116,21 @@ export const LoadingText = styled.Text`
   font-size: 18px;
   color: #8280e1;
   font-weight: bold;
+`;
+
+export const WarnBox = styled(Animated.View)`
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background: #41ad49;
+  align-items: center;
+`;
+
+export const WarnBoxText = styled.Text`
+  font-size: 14px;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+  margin-top: 10px;
 `;

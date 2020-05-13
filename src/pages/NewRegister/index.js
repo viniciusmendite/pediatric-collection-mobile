@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {StatusBar, StyleSheet} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {StatusBar, StyleSheet, Animated} from 'react-native';
 import Lottie from 'lottie-react-native';
 import TextInputMask from 'react-native-text-input-mask';
 
@@ -28,10 +28,13 @@ import {
   TitleFooter,
   LoadingArea,
   LoadingText,
+  WarnBox,
+  WarnBoxText,
 } from './styles';
 
 export default () => {
   const [loading, setLoading] = useState(false);
+  const [endLoading, setEndLoading] = useState(false);
 
   const [patient, setPatient] = useState('');
   const [responsible, setResponsible] = useState('');
@@ -46,6 +49,8 @@ export default () => {
   const [medicName, setMedicName] = useState('');
   const [date, setDate] = useState('');
   const [hour, setHour] = useState('');
+
+  const warnHeight = new Animated.Value(0);
 
   const handleSendNewRegister = async () => {
     const data = {
@@ -67,13 +72,32 @@ export default () => {
     try {
       setLoading(true);
       await api.post('consultation', data);
-      // eslint-disable-next-line no-alert
+      setLoading(false);
       setTimeout(() => {
-        setLoading(false);
-      }, 2000);
+        setEndLoading(true);
+      }, 500);
     } catch (error) {
       console.log(error);
+      setLoading(false);
     }
+    setEndLoading(false);
+    console.log(endLoading);
+  };
+
+  const handleWarning = () => {
+    Animated.sequence([
+      Animated.timing(warnHeight, {
+        toValue: 40,
+        duration: 1000,
+        useNativeDriver: false,
+      }),
+      Animated.delay(2000),
+      Animated.timing(warnHeight, {
+        toValue: 0,
+        duration: 1000,
+        useNativeDriver: false,
+      }),
+    ]).start();
   };
 
   return (
@@ -251,10 +275,15 @@ export default () => {
             loop
             speed={1}
           />
-
           <LoadingText>ENVIANDO DADOS...</LoadingText>
         </LoadingArea>
       )}
+
+      <WarnBox style={{height: warnHeight}}>
+        <WarnBoxText>Dados enviados com sucesso</WarnBoxText>
+      </WarnBox>
+
+      {endLoading && loading === false && handleWarning()}
     </Container>
   );
 };
