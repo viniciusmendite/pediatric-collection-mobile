@@ -38,9 +38,9 @@ export default () => {
 
   const [patient, setPatient] = useState('');
   const [responsible, setResponsible] = useState('');
-  const [pulse, setPulse] = useState();
-  const [saturation, setSaturation] = useState();
-  const [respiration, setRespiration] = useState();
+  const [pulse, setPulse] = useState('');
+  const [saturation, setSaturation] = useState('');
+  const [respiration, setRespiration] = useState('');
   const [pressure, setPressure] = useState('');
   const [address, setAddress] = useState('');
   const [neighborhood, setNeighborhood] = useState('');
@@ -138,14 +138,14 @@ export default () => {
             <DataInput
               placeholder="Pulso"
               placeholderTextColor="#ddd"
-              keyboardType="numeric"
+              keyboardType="phone-pad"
               value={pulse}
               onChangeText={t => setPulse(t)}
             />
             <DataInput
               placeholder="Saturação"
               placeholderTextColor="#ddd"
-              keyboardType="numeric"
+              keyboardType="phone-pad"
               value={saturation}
               onChangeText={t => setSaturation(t)}
             />
@@ -155,13 +155,14 @@ export default () => {
             <DataInput
               placeholder="Respiração"
               placeholderTextColor="#ddd"
-              keyboardType="numeric"
+              keyboardType="phone-pad"
               value={respiration}
               onChangeText={t => setRespiration(t)}
             />
             <DataInput
               placeholder="Pressão"
               placeholderTextColor="#ddd"
+              keyboardType="phone-pad"
               value={pressure}
               onChangeText={t => setPressure(t)}
             />
@@ -201,7 +202,7 @@ export default () => {
             placeholderTextColor="#ddd"
             keyboardType="numeric"
             autoCorrect={false}
-            mask={'([00]) [00000]  [0000]'}
+            mask={'([00]) [00000] - [0000]'}
             value={telephone}
             onChangeText={(formatted, extracted) => {
               setTelephone(formatted);
