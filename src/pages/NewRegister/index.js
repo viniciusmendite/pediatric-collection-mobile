@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {StatusBar, StyleSheet, Animated} from 'react-native';
 import Lottie from 'lottie-react-native';
 import TextInputMask from 'react-native-text-input-mask';
@@ -73,33 +73,32 @@ export default () => {
       setLoading(true);
       await api.post('consultation', data);
       setLoading(false);
+      setEndLoading(true);
       setTimeout(() => {
-        setEndLoading(true);
-      }, 500);
+        setEndLoading(false);
+      }, 3300);
     } catch (error) {
       console.log(error);
       setLoading(false);
+      setEndLoading(false);
     }
-    setEndLoading(false);
-    console.log(endLoading);
   };
 
   const handleWarning = () => {
     Animated.sequence([
       Animated.timing(warnHeight, {
         toValue: 40,
-        duration: 1000,
+        duration: 800,
         useNativeDriver: false,
       }),
       Animated.delay(2000),
       Animated.timing(warnHeight, {
         toValue: 0,
-        duration: 1000,
+        duration: 500,
         useNativeDriver: false,
       }),
     ]).start();
   };
-
   return (
     <Container scrollEnabled={loading ? false : true}>
       <StatusBar barStyle="light-content" backgroundColor="#76b1c4" />
