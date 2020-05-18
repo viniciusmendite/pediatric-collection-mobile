@@ -7,6 +7,7 @@ const AppStack = createStackNavigator();
 import Home from './pages/Home';
 import NewRegister from './pages/NewRegister';
 import ListRegisters from './pages/ListRegisters';
+import Details from './pages/Details';
 
 export default () => {
   return (
@@ -19,6 +20,7 @@ export default () => {
         <AppStack.Screen name="Home" component={Home} />
         <AppStack.Screen name="NewRegister" component={NewRegister} />
         <AppStack.Screen name="ListRegisters" component={ListRegisters} />
+        <AppStack.Screen name="Details" component={Details} />
       </AppStack.Navigator>
     </NavigationContainer>
   );

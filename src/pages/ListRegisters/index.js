@@ -11,7 +11,7 @@ export default () => {
   const [page, setPage] = useState(1);
 
   const loadRegisters = async () => {
-    const response = await api.get('consultation?page=1');
+    const response = await api.get('consultation');
 
     const {docs} = response.data;
     setRegisters(docs);

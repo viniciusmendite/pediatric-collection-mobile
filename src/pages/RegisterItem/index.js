@@ -1,4 +1,5 @@
 import React from 'react';
+import {useNavigation} from '@react-navigation/native';
 
 import ArrowRight from '../../assets/right-arrow.png';
 import {
@@ -8,9 +9,16 @@ import {
   DefaultText,
   AreaButton,
   ArrowImage,
+  Button,
 } from './styles';
 
 export default ({data}) => {
+  const navigation = useNavigation();
+
+  const navigateToDetail = register => {
+    navigation.navigate('Details', {register});
+  };
+
   return (
     <CardRegister>
       <Details>
@@ -29,7 +37,9 @@ export default ({data}) => {
       </Details>
 
       <AreaButton>
-        <ArrowImage source={ArrowRight} />
+        <Button onPress={() => navigateToDetail(data)}>
+          <ArrowImage source={ArrowRight} />
+        </Button>
       </AreaButton>
     </CardRegister>
   );

@@ -23,6 +23,10 @@ export default () => {
     navigation.navigate('NewRegister');
   };
 
+  const navigateForListRegisters = () => {
+    navigation.navigate('ListRegisters');
+  };
+
   return (
     <Container>
       <StatusBar barStyle="light-content" backgroundColor="#76b1c4" />
@@ -44,7 +48,7 @@ export default () => {
           <ButtonNewRegisterText>Novo Registro</ButtonNewRegisterText>
         </ButtonNewRegister>
 
-        <ButtonListRegister>
+        <ButtonListRegister onPress={navigateForListRegisters}>
           <ButtonListRegisterText>Listar Registros</ButtonListRegisterText>
         </ButtonListRegister>
       </AreaButtons>

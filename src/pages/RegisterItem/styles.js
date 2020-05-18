@@ -36,3 +36,5 @@ export const ArrowImage = styled.Image`
   width: 20px;
   height: 20px;
 `;
+
+export const Button = styled.TouchableOpacity``;
