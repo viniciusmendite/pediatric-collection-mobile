@@ -38,9 +38,9 @@ export default () => {
 
   const [patient, setPatient] = useState('');
   const [responsible, setResponsible] = useState('');
-  const [pulse, setPulse] = useState('');
-  const [saturation, setSaturation] = useState('');
-  const [respiration, setRespiration] = useState('');
+  const [pulse, setPulse] = useState();
+  const [saturation, setSaturation] = useState();
+  const [respiration, setRespiration] = useState();
   const [pressure, setPressure] = useState('');
   const [address, setAddress] = useState('');
   const [neighborhood, setNeighborhood] = useState('');
@@ -51,6 +51,22 @@ export default () => {
   const [hour, setHour] = useState('');
 
   const warnHeight = new Animated.Value(0);
+
+  const handleClearFields = () => {
+    setPatient('');
+    setResponsible('');
+    setPulse();
+    setSaturation();
+    setRespiration();
+    setPressure('');
+    setAddress('');
+    setNeighborhood('');
+    setCity('');
+    setTelephone('');
+    setMedicName('');
+    setDate('');
+    setHour('');
+  };
 
   const handleSendNewRegister = async () => {
     const data = {
@@ -72,6 +88,7 @@ export default () => {
     try {
       setLoading(true);
       await api.post('consultation', data);
+      handleClearFields();
       setLoading(false);
       setEndLoading(true);
       setTimeout(() => {
@@ -138,14 +155,14 @@ export default () => {
             <DataInput
               placeholder="Pulso"
               placeholderTextColor="#ddd"
-              keyboardType="phone-pad"
+              keyboardType="numeric"
               value={pulse}
               onChangeText={t => setPulse(t)}
             />
             <DataInput
               placeholder="Saturação"
               placeholderTextColor="#ddd"
-              keyboardType="phone-pad"
+              keyboardType="numeric"
               value={saturation}
               onChangeText={t => setSaturation(t)}
             />
@@ -155,16 +172,21 @@ export default () => {
             <DataInput
               placeholder="Respiração"
               placeholderTextColor="#ddd"
-              keyboardType="phone-pad"
+              keyboardType="numeric"
               value={respiration}
               onChangeText={t => setRespiration(t)}
             />
-            <DataInput
+            <TextInputMask
+              style={styles.dataInput}
               placeholder="Pressão"
               placeholderTextColor="#ddd"
-              keyboardType="phone-pad"
+              keyboardType="numeric"
+              autoCorrect={false}
+              mask={'[00]/[00]'}
               value={pressure}
-              onChangeText={t => setPressure(t)}
+              onChangeText={(formatted, extracted) => {
+                setPressure(formatted);
+              }}
             />
           </AreaRow>
         </AreaPatient>
