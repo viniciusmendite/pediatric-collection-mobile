@@ -6,6 +6,7 @@ const AppStack = createStackNavigator();
 
 import Home from './pages/Home';
 import NewRegister from './pages/NewRegister';
+import ListRegisters from './pages/ListRegisters';
 
 export default () => {
   return (
@@ -13,9 +14,11 @@ export default () => {
       <AppStack.Navigator
         screenOptions={{
           headerShown: false,
-        }}>
+        }}
+        initialRouteName="ListRegisters">
         <AppStack.Screen name="Home" component={Home} />
         <AppStack.Screen name="NewRegister" component={NewRegister} />
+        <AppStack.Screen name="ListRegisters" component={ListRegisters} />
       </AppStack.Navigator>
     </NavigationContainer>
   );
