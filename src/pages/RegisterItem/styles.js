@@ -9,7 +9,6 @@ export const CardRegister = styled.View`
   background: #f0f0f5;
   padding: 10px;
   border-radius: 6px;
-  border: 1.2px solid rgba(0, 0, 0, 0.3);
   margin-bottom: 8px;
 `;
 

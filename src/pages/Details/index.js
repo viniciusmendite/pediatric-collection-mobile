@@ -1,5 +1,7 @@
 import React from 'react';
-import {useRoute} from '@react-navigation/native';
+import {useRoute, useNavigation} from '@react-navigation/native';
+
+import api from '../../services/api';
 
 import {
   Container,
@@ -16,8 +18,14 @@ import {
 
 export default () => {
   const route = useRoute();
+  const navigation = useNavigation();
+
   const register = route.params.register;
 
+  const handleDelete = async id => {
+    await api.delete(`consultation/${id}`);
+    navigation.navigate('Home');
+  };
   return (
     <Container>
       <CardRegister>
@@ -88,7 +96,7 @@ export default () => {
         <AreaRow>
           <Area1>
             <DefaultNameText>
-              <DefaultText>Date: </DefaultText>
+              <DefaultText>Data: </DefaultText>
               {register.date}
             </DefaultNameText>
           </Area1>
@@ -102,7 +110,10 @@ export default () => {
         </AreaRow>
       </CardRegister>
 
-      <ButtonDelete onPress={() => {}}>
+      <ButtonDelete
+        onPress={() => {
+          handleDelete(register._id);
+        }}>
         <ButtonDeleteText>Excluir</ButtonDeleteText>
       </ButtonDelete>
     </Container>

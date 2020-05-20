@@ -1,20 +1,36 @@
 import React, {useState, useEffect} from 'react';
-import {StatusBar} from 'react-native';
+import {StatusBar, StyleSheet} from 'react-native';
+import Lottie from 'lottie-react-native';
 
 import RegisterItem from '../RegisterItem';
 import api from '../../services/api';
 
-import {Container, HeaderText, ItemList} from './styles';
+import empty from '../../assets/lottie/empty.json';
+
+import {
+  Container,
+  HeaderText,
+  ItemList,
+  Loading,
+  AreaLottie,
+  TextEmpty,
+} from './styles';
 
 export default () => {
   const [registers, setRegisters] = useState([]);
-  const [page, setPage] = useState(1);
+  const [registerInfo, setRegisterInfo] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  let page = 1;
 
   const loadRegisters = async () => {
-    const response = await api.get('consultation');
+    setLoading(true);
+    const response = await api.get(`consultation?page=${page}`);
 
-    const {docs} = response.data;
-    setRegisters(docs);
+    const {docs, ...info} = response.data;
+    setRegisters([...registers, ...docs]);
+    setRegisterInfo(info);
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -22,17 +38,51 @@ export default () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const loadMore = () => {
+    if (registers.length === registerInfo.total) {
+      return;
+    }
+
+    page++;
+    loadRegisters();
+  };
+
   return (
     <Container>
       <StatusBar barStyle="light-content" backgroundColor="#76b1c4" />
       <HeaderText>Registros</HeaderText>
+      {registerInfo.total === 0 && (
+        <AreaLottie>
+          <Lottie
+            style={styles.lottie}
+            resizeMode="contain"
+            autoSize
+            source={empty}
+            autoPlay
+            loop
+            speed={1}
+          />
 
+          <TextEmpty>Nenhum registro encontrado</TextEmpty>
+        </AreaLottie>
+      )}
       <ItemList
         data={registers}
         keyExtractor={item => String(item._id)}
         renderItem={({item}) => <RegisterItem data={item} />}
-        showsVerticalScrollIndicator={false}
+        showsVerticalScrollIndicator={true}
+        ListFooterComponent={loading && <Loading />}
+        onEndReached={loadMore}
+        onEndReachedThreshold={0.2}
       />
     </Container>
   );
 };
+
+const styles = StyleSheet.create({
+  lottie: {
+    width: 200,
+    height: 200,
+    marginBottom: 50,
+  },
+});
