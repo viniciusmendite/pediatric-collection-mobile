@@ -176,17 +176,14 @@ export default () => {
               value={respiration}
               onChangeText={t => setRespiration(t)}
             />
-            <TextInputMask
-              style={styles.dataInput}
+
+            <DataInput
               placeholder="Pressão"
               placeholderTextColor="#ddd"
-              keyboardType="numeric"
-              autoCorrect={false}
-              mask={'[00]/[00]'}
+              autoCapitalize="words"
+              keyboardType="phone-pad"
               value={pressure}
-              onChangeText={(formatted, extracted) => {
-                setPressure(formatted);
-              }}
+              onChangeText={t => setPressure(t)}
             />
           </AreaRow>
         </AreaPatient>
