@@ -18,7 +18,7 @@
 
 <div style="text-align: justify">&emsp; Eu fiz uma publicação no LinkedIn, vou deixar o link da minha publicação e nela possui o vídeo mostrando as funcionalidades do app.</div>
 
-&emsp; Link da publicação: [Vídeo do app](https://www.linkedin.com/posts/vin%C3%ADcius-mendite-4493211a4_lottie-reactnative-reactjs-activity-6669427115521273856-rj0e)
+&emsp; Link da publicação: [Vídeo do app](https://www.linkedin.com/posts/vin%C3%ADcius-mendite-4493211a4_lottie-reactnative-javascript-activity-6669572897482260481-EWiG)
 
 #### Telas do app
 
