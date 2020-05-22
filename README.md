@@ -19,6 +19,7 @@
 <kbd><img src="https://github.com/viniciusmendite/PrintScreen/blob/master/pediatric-collection/screen1.png" alt="screen" width="200" height="331" /></kbd>
 <kbd><img src="https://github.com/viniciusmendite/PrintScreen/blob/master/pediatric-collection/screen2.png" alt="screen" width="200" height="331" /></kbd>
 <kbd><img src="https://github.com/viniciusmendite/PrintScreen/blob/master/pediatric-collection/screen3.png" alt="screen" width="200" height="331" /></kbd>
-<kbd><img src="https://github.com/viniciusmendite/PrintScreen/blob/master/pediatric-collection/screen4.png" alt="screen" width="200" height="331" /></kbd> <br/>
+<kbd><img src="https://github.com/viniciusmendite/PrintScreen/blob/master/pediatric-collection/screen4.png" alt="screen" width="200" height="331" /></kbd>
+
 <kbd><img src="https://github.com/viniciusmendite/PrintScreen/blob/master/pediatric-collection/screen5.png" alt="screen" width="200" height="331" /></kbd>
 <kbd><img src="https://github.com/viniciusmendite/PrintScreen/blob/master/pediatric-collection/screen6.png" alt="screen" width="200" height="331" /></kbd>
