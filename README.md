@@ -14,6 +14,12 @@
 - react-native-text-input-mask
 - styled-components
 
+### Demonstração do app em vídeo
+
+<div style="text-align: justify">&emsp; Eu fiz uma publicação no LinkedIn, vou deixar o link da minha publicação e nela possui o vídeo mostrando as funcionalidades do app.</div>
+
+&emsp; Link da publicação: [Vídeo do app](https://www.linkedin.com/posts/vin%C3%ADcius-mendite-4493211a4_lottie-reactnative-reactjs-activity-6669427115521273856-rj0e)
+
 #### Telas do app
 
 <kbd><img src="https://github.com/viniciusmendite/PrintScreen/blob/master/pediatric-collection/screen1.png" alt="screen" width="200" height="331" /></kbd>
