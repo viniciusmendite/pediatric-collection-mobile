@@ -59,7 +59,7 @@ export default () => {
             autoSize
             source={empty}
             autoPlay
-            loop
+            loop={false}
             speed={1}
           />
 
